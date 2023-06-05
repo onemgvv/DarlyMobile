@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("isSystemMode") private var isSystemMode = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                AppTabBarView()
+            }
+            .preferredColorScheme(isDarkMode && !isSystemMode ? .dark : isSystemMode ? colorScheme : .light)
+            .background(Color("appBackground"))
         }
-        .padding()
     }
 }
 

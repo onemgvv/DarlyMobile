@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct DarlyApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
+                .frame(maxWidth: .infinity)
+                .background(Color("appBackground"))
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
