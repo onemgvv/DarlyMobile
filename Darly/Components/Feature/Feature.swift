@@ -8,37 +8,36 @@
 import SwiftUI
 
 struct Feature: View {
-    @State private var goToCreateSelfRoute = false
-    @State private var goToAIGenerateRoute = false
-    
     var body: some View {
-        NavigationLink(destination: SelfMadeRoute(), isActive: $goToCreateSelfRoute) { EmptyView() }
-        NavigationLink(destination: AIGenerateRouteView(), isActive: $goToAIGenerateRoute) { EmptyView() }
-        
         VStack (alignment: .leading, spacing: 10) {
             Text("Ты можешь")
                 .font(.custom("MavenPro-Medium", size: 20))
             VStack {
-                AppButton(
-                    stroke: .purpleBlue,
-                    strokeWidth: 1,
-                    background: .appBackground,
-                    color: .mainColor,
-                    title: "Построить маршрут сам",
-                    cornerRadius: 15,
-                    action: {
-                        goToCreateSelfRoute.toggle()
-                    }
-                )
+                NavigationLink(destination: AIGenerateRouteView(), label: {
+                    Text("Построить маршрут сам")
+                        .font(.custom("MavenPro-Medium", size: 16))
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color.mainColor)
+                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous).fill(Color.clear))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                .strokeBorder(Color.purpleBlue, lineWidth: 1)
+                        )
+                })
+                .buttonStyle(PressedButtonStyle())
+
                 Text("или")
-                AppButton(
-                    background: .purpleBlue,
-                    title: "Попросить нейросеть",
-                    cornerRadius: 15,
-                    action: {
-                        goToAIGenerateRoute.toggle()
-                    }
-                )
+                
+                NavigationLink(destination: AIGenerateRouteView(), label: {
+                    Text("Попросить нейросеть")
+                        .font(.custom("MavenPro-Medium", size: 16))
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color.white)
+                        .background(RoundedRectangle(cornerRadius: 15, style: .continuous).fill(Color.purpleBlue))
+                })
+                .buttonStyle(PressedButtonStyle())
             }
             .padding(20)
             .frame(maxWidth: .infinity)

@@ -66,6 +66,7 @@ struct SplashScreenView: View {
                 .padding(.vertical, 14)
             }
             .opacity(0)
+            .buttonStyle(PressedButtonStyle())
             Spacer()
         }
     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     private let myTrips: [AppContentItem] = [
         AppContentItem(title: "Сулакский каньон", subtitle: "Самый глубокий в мире"),
-        AppContentItem(title: "Дерент", subtitle: "Древнейший город России"),
+        AppContentItem(title: "Дербент", subtitle: "Древнейший город России"),
         AppContentItem(title: "Чиркейское водохранилище", subtitle: "Интересный факт"),
         AppContentItem(title: "Гамсутль", subtitle: "Интересный факт")
     ]

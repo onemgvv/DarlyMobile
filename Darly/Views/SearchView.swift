@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     private let popular: [AppContentItem] = [
         AppContentItem(title: "Сулакский каньон", subtitle: "Самый глубокий в мире"),
-        AppContentItem(title: "Дерент", subtitle: "Древнейший город России"),
+        AppContentItem(title: "Дербент", subtitle: "Древнейший город России"),
         AppContentItem(title: "Чиркейское водохранилище", subtitle: "Интересный факт"),
         AppContentItem(title: "Гамсутль", subtitle: "Интересный факт")
     ]
@@ -21,7 +21,7 @@ struct SearchView: View {
             itemWidth: 220
         ),
         AppContentItem(
-            title: "Дерент", subtitle: "Древнейший город России",
+            title: "Дербент", subtitle: "Древнейший город России",
             itemWidth: 220
         ),
         AppContentItem(

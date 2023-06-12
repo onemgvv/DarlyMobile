@@ -14,11 +14,7 @@ struct BellsButton: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
     
     var body: some View {
-        NavigationLink(destination: NotificationsView(), isActive: $goToNotifications) { EmptyView() }
-        
-        Button(action: {
-            goToNotifications.toggle()
-        }, label: {
+        NavigationLink(destination: NotificationsView(), label: {
             if isDarkMode {
                 Image("lBell")
                     .resizable()

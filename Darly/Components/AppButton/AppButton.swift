@@ -28,7 +28,8 @@ struct AppButton: View {
     @State var verticalPadding: CGFloat = 0
     @State var horizontalPadding: CGFloat = 0
     @State var action: () -> Void = {}
-  
+    
+    
     var body: some View {
         Button(action: {
             action()

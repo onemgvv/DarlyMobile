@@ -11,6 +11,7 @@ struct TabBar: View {
     let tabs: [TabBarItem]
     @Binding var selection: TabBarItem
     @Environment(\.colorScheme) var colorScheme
+    @AppStorage("addRoutePage") private var addRoutePage: Int = 0
     
     var body: some View {
         HStack {
@@ -64,6 +65,9 @@ extension TabBar {
     
     private func switchToTab(tab: TabBarItem) {
         withAnimation(.easeInOut) {
+            if tab == .add {
+                addRoutePage = 0
+            }
             selection = tab
         }
     }

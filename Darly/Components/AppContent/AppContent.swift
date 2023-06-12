@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AppContent: View {
-    @State private var goToRoute = false
-    @State private var goToAllRoutes = false
     @State var title: String = "Заголовок"
     @State var itemWeight: CGFloat = 150
     @State var itemHeight: CGFloat = 150
@@ -22,20 +20,18 @@ struct AppContent: View {
     ]
     
     var body: some View {
-        NavigationLink(destination: RouteList(title: title), isActive: $goToAllRoutes) {  EmptyView() }
+
         VStack {
             HStack {
                 Text(title)
                     .font(.custom("MavenPro-SemiBold", size: 16))
                     .foregroundColor(Color.appText)
                 Spacer()
-                Button(action: {
-                    goToAllRoutes.toggle()
-                }, label: {
+                NavigationLink(destination: RouteList(title: title)) {
                     Text("все")
                         .foregroundColor(.purpleBlue)
                         .font(.custom("MavenPro-Medium", size: 12))
-                })
+                }
                 .buttonStyle(PressedButtonStyle())
             }
             
@@ -43,10 +39,8 @@ struct AppContent: View {
                 HStack {
                     LazyHGrid(rows: rows) {
                         ForEach(items, id: \.self) { item in
-                            NavigationLink(destination: RouteView(title: item.title), isActive: $goToRoute) {
-                                appContentView(appContentItem: item, action: {
-                                    goToRoute.toggle()
-                                })
+                            NavigationLink(destination: RouteView(title: item.title, subtitle: item.subtitle)) {
+                                appContentView(appContentItem: item)
                             }
                         }
                     }
@@ -64,33 +58,28 @@ struct AppContent_Previews: PreviewProvider {
 }
 
 extension AppContent {
-    private func appContentView(appContentItem: AppContentItem, action: @escaping () -> Void = {}) -> some View {
-        return Button(action: {
-                action()
-            }, label: {
+    private func appContentView(appContentItem: AppContentItem) -> some View {
+        return VStack(alignment: .leading) {
+            Spacer()
+            HStack {
                 VStack(alignment: .leading) {
-                    Spacer()
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(appContentItem.title)
-                                .foregroundColor(Color.appText)
-                                .font(.custom("Poppins-SemiBold", size: 14))
-                                .lineLimit(1)
-                            Text(appContentItem.subtitle)
-                                .foregroundColor(Color.appText)
-                                .font(.custom("Poppins-Regular", size: 12))
-                                .lineLimit(1)
-                        }
-                        Spacer()
-                    }
+                    Text(appContentItem.title)
+                        .foregroundColor(Color.appText)
+                        .font(.custom("Poppins-SemiBold", size: 14))
+                        .lineLimit(1)
+                    Text(appContentItem.subtitle)
+                        .foregroundColor(Color.appText)
+                        .font(.custom("Poppins-Regular", size: 12))
+                        .lineLimit(1)
                 }
-                .padding(.leading, 15)
-                .padding(.bottom, 10)
-                .frame(width: appContentItem.itemWidth, height: appContentItem.itemHeight)
-                .aspectRatio(contentMode: .fill)
-                .background(Color.tabBarBackground)
-                .cornerRadius(appContentItem.cornerRadius)
-            })
-            .buttonStyle(PressedButtonStyle())
+                Spacer()
+            }
         }
+        .padding(.leading, 15)
+        .padding(.bottom, 10)
+        .frame(width: appContentItem.itemWidth, height: appContentItem.itemHeight)
+        .aspectRatio(contentMode: .fill)
+        .background(Color.tabBarBackground)
+        .cornerRadius(appContentItem.cornerRadius)
+    }
 }

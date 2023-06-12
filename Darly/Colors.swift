@@ -17,4 +17,5 @@ extension Color {
     static let appBackground = Color("appBackground")
     static let appText = Color("textColor")
     static let appRed = Color("customRed")
+    static let darkPurple = Color("darkPurple")
 }

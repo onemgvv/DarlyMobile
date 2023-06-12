@@ -9,9 +9,11 @@ import SwiftUI
 
 struct RouteList: View {
     @State var title = ""
+    
     var body: some View {
         VStack {
             Text("Hello, RouteList!")
+                .font(.custom("MavenPro-Black", size: 20))
         }
         .navigationTitle(title)
         .navigationBarBackButtonHidden(true)
